@@ -31,7 +31,7 @@ def get_tree(file_path):
 if __name__ == '__main__':
     table_dic = get_tree(file_path=r'/Users/GongLi/Desktop/Satellite_PowerSystem/PowerSystem.txt')
 
-    with open('sql.txt', 'a') as f:
+    with open('create_tables.sql', 'a') as f:
         """该文档写入生成数据库的sql语句"""
         for key, val in table_dic.items():
             f.writelines('create table `%s`\n(\n' % key.split('_')[2])
