@@ -14,7 +14,7 @@ class ProcessModel:
 
     def connect_database(self):
         # 连接到数据库，并生成cursor对象
-        self.conn = cx_Oracle.connect('gongli', '111', '192.168.199.133:1521/ORCL')
+        self.conn = cx_Oracle.connect('gongli', '111', '192.168.199.125:1521/ORCL')
         self.cursor = self.conn.cursor()
         self.time_column = 'CSSJ'
 
