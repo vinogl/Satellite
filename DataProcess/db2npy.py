@@ -14,7 +14,7 @@ class ProcessModel:
 
     def connect_database(self):
         # 连接到数据库，并生成cursor对象
-        self.conn = cx_Oracle.connect('gongli', '111', '192.168.199.125:1521/ORCL')
+        self.conn = cx_Oracle.connect('gongli', '111', 'localhost:1521/ORCL')
         self.cursor = self.conn.cursor()
         self.time_column = 'CSSJ'
 
@@ -137,8 +137,8 @@ if __name__ == '__main__':
     """
     重采样
     """
-    data_np = np.load('../numpy/1006.npy')
-    seconds_series = np.load('../numpy/1006_time.npy')
+    data_np = np.load('../numpy/1006.npy', allow_pickle=True)
+    seconds_series = np.load('../numpy/1006_time.npy', allow_pickle=True)
     sample_seconds, sample_np = re_sample(seconds_series[:], data_np[:, :])
 
     np.save('../numpy/sample_1006.npy', sample_np)
