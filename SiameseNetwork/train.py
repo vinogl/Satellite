@@ -44,7 +44,7 @@ if __name__ == "__main__":
     input_shape = [105, 105, 3]
 
     # 用于指定是否使用VGG预训练权重
-    pretrained = True
+    pretrained = False
     model_path = ""
 
     """
@@ -112,8 +112,7 @@ if __name__ == "__main__":
 
         for epoch in range(Init_epoch, Freeze_epoch):
             total_loss, val_loss = fit_one_epoch(model_train, model, loss, optimizer, epoch, epoch_step, epoch_step_val,
-                                                 gen, gen_val,
-                                                 Freeze_epoch, Cuda)
+                                                 gen, gen_val, Freeze_epoch, Cuda)
             lr_scheduler.step()
 
             total_loss_np = np.append(total_loss_np, total_loss)

@@ -1,7 +1,6 @@
 import torch
 import torch.nn as nn
-
-from vgg import vgg16  # 导入的vgg16用在siamese的网络中
+from .vgg_model import vgg
 
 
 def get_img_output_length(width, height):
@@ -20,7 +19,7 @@ def get_img_output_length(width, height):
 class Siamese(nn.Module):
     def __init__(self, input_shape, pretrained=False):
         super(Siamese, self).__init__()
-        self.vgg = vgg16(pretrained, input_shape[-1])
+        self.vgg = vgg(pretrained, input_shape[-1])
         del self.vgg.avg_pool
         del self.vgg.classifier
 

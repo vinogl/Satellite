@@ -1,6 +1,7 @@
 import torch
 import torch.nn as nn
 from tqdm import tqdm
+import os
 
 
 def get_lr(optimizer):
@@ -82,6 +83,11 @@ def fit_one_epoch(model_train, model, loss, optimizer, epoch, epoch_step, epoch_
     print('Finish Validation')
     print('Epoch:' + str(epoch + 1) + '/' + str(Epoch))
     print('Total Loss: %.3f || Val Loss: %.3f ' % (total_loss / epoch_step, val_loss / epoch_step_val))
+
+    # 判断是否存在目录，若不存在则创建
+    if not os.path.exists('logs'):
+        os.mkdir('logs')
+
     torch.save(model.state_dict(), 'logs/ep%03d-loss%.3f-val_loss%.3f.pth' % (
         (epoch + 1), total_loss / epoch_step, val_loss / epoch_step_val))
     
