@@ -161,6 +161,8 @@ class MainPage(Ui_MainWindow, QMainWindow):
     def plot_current(self, x, y):
         self.fig_c.clear()
         ax = self.fig_c.add_subplot(111)
+        ax.set_xlabel('时间(s)',  fontdict={'family': 'SimHei', 'size': 12})
+        ax.set_ylabel('太阳阵输入电流(A)',  fontdict={'family': 'SimHei', 'size': 12})
         ax.plot(x, y)
         self.fig_c.tight_layout()
         self.canvas_c.draw_idle()
@@ -168,6 +170,9 @@ class MainPage(Ui_MainWindow, QMainWindow):
     def plot_voltage(self, x, y):
         self.fig_v.clear()
         ax = self.fig_v.add_subplot(111)
+        # 设置ax正常显示中文
+        ax.set_xlabel('时间(s)', fontdict={'family': 'SimHei', 'size': 12})
+        ax.set_ylabel('分流域电压(V)',  fontdict={'family': 'SimHei', 'size': 12})
         ax.plot(x, y)
         self.fig_v.tight_layout()
         self.canvas_v.draw_idle()
@@ -177,6 +182,7 @@ class MainPage(Ui_MainWindow, QMainWindow):
         function = MarkovTransitionField()
         X_tran = function.fit_transform([data])
         ax = self.fig_m.add_subplot(111)
+        ax.axis('off')
         ax.imshow(X_tran[0], cmap='rainbow', origin='lower')
         self.fig_m.tight_layout()
         self.canvas_m.draw_idle()
@@ -224,11 +230,11 @@ class MainPage(Ui_MainWindow, QMainWindow):
         self.single_timer = QTimer()
         self.single_timer.setSingleShot(True)
         self.single_timer.timeout.connect(self.detect_sample)
-        self.single_timer.start(5000)
+        self.single_timer.start(8000)
 
     def start_detect_all(self):
         self.start_spot = self.num_Slider.value()
-        self.timer.start(5000)
+        self.timer.start(8000)
 
     def detect_stop(self):
         self.timer.stop()
