@@ -1,0 +1,9 @@
+{
+    "kx02": {
+        "user": "gongli",
+        "password": "111",
+        "host": "localhost",
+        "port": "1521",
+        "sid": "orcl"
+    }
+}
