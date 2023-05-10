@@ -40,6 +40,11 @@ if __name__ == "__main__":
     # 训练后，历史损失的保存地址
     save_path = r'../numpy/%s' % pic_type
 
+    # 训练log保存地址
+    log_path = 'logs'
+    if not os.path.exists(log_path):
+        os.mkdir(log_path)
+
     # 输入图像的大小，默认为105,105,3
     input_shape = [105, 105, 3]
 
@@ -112,7 +117,7 @@ if __name__ == "__main__":
 
         for epoch in range(Init_epoch, Freeze_epoch):
             total_loss, val_loss = fit_one_epoch(model_train, model, loss, optimizer, epoch, epoch_step, epoch_step_val,
-                                                 gen, gen_val, Freeze_epoch, Cuda)
+                                                 gen, gen_val, Freeze_epoch, Cuda, log_path)
             lr_scheduler.step()
 
             total_loss_np = np.append(total_loss_np, total_loss)
@@ -143,7 +148,7 @@ if __name__ == "__main__":
 
         for epoch in range(Freeze_epoch, Unfreeze_epoch):
             total_loss, val_loss = fit_one_epoch(model_train, model, loss, optimizer, epoch, epoch_step, epoch_step_val,
-                                                 gen, gen_val, Unfreeze_epoch, Cuda)
+                                                 gen, gen_val, Unfreeze_epoch, Cuda, log_path)
             lr_scheduler.step()
 
             total_loss_np = np.append(total_loss_np, total_loss)
