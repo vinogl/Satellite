@@ -1,5 +1,10 @@
 import numpy as np
 from matplotlib import pyplot as plt
+import os
+
+
+if not os.path.exists('../pic/confusion_matrix'):
+    os.makedirs('../pic/confusion_matrix')
 
 
 np_type = 'Markov'

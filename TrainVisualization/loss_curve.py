@@ -1,5 +1,10 @@
 import numpy as np
 from matplotlib import pyplot as plt
+import os
+
+
+if not os.path.exists('../pic/loss_curve'):
+    os.makedirs('../pic/loss_curve')
 
 
 np_type = 'Markov'
