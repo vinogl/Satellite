@@ -101,8 +101,6 @@ class MainPage(Ui_MainWindow, QMainWindow):
         port = self.port_Edit.text()
         sid = self.sid_Edit.text()
 
-        message = '%s@%s:%s/%s' % (user, host, port, sid)  # 用于显示在表格中
-
         # 将信息写入json文件，向下写入
         if os.path.exists('connect.json') and os.path.getsize('connect.json'):
             with open('connect.json', 'r', encoding='utf-8') as f:
@@ -122,6 +120,7 @@ class MainPage(Ui_MainWindow, QMainWindow):
 
     def table_load(self):
         self.connect_table.setRowCount(0)
+        self.connect_table.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeToContents)
         if os.path.exists('connect.json'):
             with open('connect.json', 'r') as f:
                 connect_info = json.load(f)
@@ -161,8 +160,8 @@ class MainPage(Ui_MainWindow, QMainWindow):
     def plot_current(self, x, y):
         self.fig_c.clear()
         ax = self.fig_c.add_subplot(111)
-        ax.set_xlabel('时间(s)',  fontdict={'family': 'SimHei', 'size': 12})
-        ax.set_ylabel('太阳阵输入电流(A)',  fontdict={'family': 'SimHei', 'size': 12})
+        ax.set_xlabel('时间(s)', fontdict={'family': 'SimHei', 'size': 12})
+        ax.set_ylabel('太阳阵输入电流(A)', fontdict={'family': 'SimHei', 'size': 12})
         ax.plot(x, y)
         self.fig_c.tight_layout()
         self.canvas_c.draw_idle()
@@ -172,7 +171,7 @@ class MainPage(Ui_MainWindow, QMainWindow):
         ax = self.fig_v.add_subplot(111)
         # 设置ax正常显示中文
         ax.set_xlabel('时间(s)', fontdict={'family': 'SimHei', 'size': 12})
-        ax.set_ylabel('分流域电压(V)',  fontdict={'family': 'SimHei', 'size': 12})
+        ax.set_ylabel('分流域电压(V)', fontdict={'family': 'SimHei', 'size': 12})
         ax.plot(x, y)
         self.fig_v.tight_layout()
         self.canvas_v.draw_idle()
