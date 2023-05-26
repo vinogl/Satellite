@@ -240,7 +240,7 @@ class MainPage(Ui_MainWindow, QMainWindow):
         with open('report.txt', 'w', encoding='utf-8') as f:
             for i in range(self.start_spot, self.num_Slider.value()):
                 f.write(
-                    '%ds~%ds, 分类类别: %s, 准确率: %.2f%% \n' % (i * cycle, (i + 1) * cycle, word_map[data_type], acc[i] * 100))
+                    '%ds~%ds, 分类类别: %s, 可信度: %.2f%% \n' % (i * cycle, (i + 1) * cycle, word_map[data_type], acc[i] * 100))
 
     def detect_all(self):
         num = self.num_Slider.value()
